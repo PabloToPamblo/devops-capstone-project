@@ -23,3 +23,23 @@ spec:
           containers:
           - image: image-registry.openshift-image-registry.svc:5000/sn-labs-paixela93/accounts:1
             name: accounts
+            resources: {}
+
+            env:
+              - name: DATABASE_HOST
+                value: postgresql
+              - name: DATABASE_NAME
+                valueFrom:
+                  secretKeyRef:
+                    name: postgresql
+                    key: database-name
+              - name: DATABASE_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: postgresql
+                    key: database-password
+              - name: DATABASE_USER
+                valueFrom:
+                  secretKeyRef:
+                    name: postgresql
+                    key: database-user
